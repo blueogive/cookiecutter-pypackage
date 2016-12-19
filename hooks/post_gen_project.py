@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
+
 import os
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
@@ -15,6 +17,12 @@ if __name__ == '__main__':
     if '{{ cookiecutter.create_author_file }}' != 'y':
         remove_file('AUTHORS.rst')
         remove_file('docs/authors.rst')
+
+    if '{{ cookiecutter.use_waf_build_sys }}' != 'y':
+        remove_file('waf')
+        remove_file('waf.bat')
+        remove_file('wafWinScheduler.bat')
+        remove_file('wscript')
 
     if 'no' in '{{ cookiecutter.command_line_interface|lower }}':
         cli_file = os.path.join('{{ cookiecutter.project_slug }}', 'cli.py')
